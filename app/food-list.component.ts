@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Food} from './food.model';
 
 @Component({
@@ -12,7 +12,7 @@ import {Food} from './food.model';
         <th>Notes</th>
       </tr>
       <tr *ngFor="let currentFood of childFoodList">
-        <td (click)="editFood(clickedFood)">{{currentFood.name}}</td>
+        <td (click)="editFood(currentFood)">{{currentFood.name}}</td>
         <td>{{currentFood.calories}}</td>
         <td>{{currentFood.notes}}</td>
       </tr>
@@ -25,10 +25,10 @@ import {Food} from './food.model';
 
 export class FoodListComponent {
   @Input() childFoodList: Food[];
-  selectedFood: Food = null;
+  selectedFood : boolean = null;
 
-  editFood(clickedFood) {
-    this.selectedFood = clickedFood;
+  editFood(currentFood) {
+    this.selectedFood = currentFood;
 
 
   }
